@@ -27,7 +27,7 @@ class LineBuilder
     public function insertFloat($value, int $start, int $end, string $padding = ' ', int $padType = STR_PAD_LEFT): void
     {
         $value = preg_replace('/[^0-9]/', '', $value);
-        $this->insertField(number_format($value, 2, '', ''), $start, $end, '0', STR_PAD_LEFT);// Implementação
+        $this->insertField($value, $start, $end, $padding, $padType);// Implementação
     }   
 
 
