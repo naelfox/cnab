@@ -34,4 +34,9 @@ class LineBuilder
         // Reinicializa a linha com espaços
         $this->line = str_repeat(' ', $length);
     }
+
+    public function nextLine(): void
+    {
+        $this->line .= PHP_EOL;
+    }
 }
