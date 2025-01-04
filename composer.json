@@ -1,0 +1,22 @@
+{
+    "name": "orchestrator/cnab",
+    "description": "A CNAB file builder for PHP",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Orchestrator\\CNAB\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "naelfox",
+            "email": "natanaelvila2@gmail.com"
+        }
+    ]
+}
+
+
