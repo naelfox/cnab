@@ -26,10 +26,23 @@ class LineBuilder
 
     public function insertFloat($value, int $start, int $end, string $padding = ' ', int $padType = STR_PAD_LEFT): void
     {
-        $value = preg_replace('/[^0-9]/', '', $value);
-        $this->insertField($value, $start, $end, $padding, $padType);// Implementação
-    }   
-
+        if (is_null($value) || trim($value) === '') {
+            $value = '0.00';
+        } else {
+            $pontuacao = preg_replace('/[0-9]/', '', $value);
+            $locale = (mb_substr($pontuacao, -1, 1) === ',') ? "pt-BR" : "en-US";
+        
+            $formatter = new \NumberFormatter($locale, \NumberFormatter::DECIMAL);
+            $parsedValue = $formatter->parse($value, \NumberFormatter::TYPE_DOUBLE);
+        
+            $value = ($parsedValue === false || $parsedValue == 0) ? '0.00' : number_format($parsedValue, 2, '.', '');
+        }
+        
+        $value = preg_replace('/[^0-9]/', '', $value);   
+        
+        $this->insertField($value, $start, $end, $padding, $padType);
+    }
+    
 
 
     public function getLine(): string
